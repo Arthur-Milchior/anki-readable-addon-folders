@@ -6,7 +6,7 @@ def getNewFolder():
     newContainingFolder = userOption.get("containingFolder")
     newFolderName = userOption.get("newFolderName")
     if newContainingFolder is None:
-        newContainingFolder = ".."
+        newContainingFolder = os.path.join(mw.pm.addonFolder(),"..")
     if newFolderName is None:
         newFolderName = "namedAddons"
     return os.path.join(newContainingFolder,newFolderName)
