@@ -1,0 +1,9 @@
+The add-ons folder contains one folder by add-on. Each folder's name
+is a string of digit. This is quite horrible for a human who want to
+go read or edit the code of an add-on.
+
+Thus, this add-on create another folder, containing symlinks with the
+name of the add-on to the add-on folder.
+
+
+For more information, please go to https://github.com/Arthur-Milchior/anki-readable-addons
