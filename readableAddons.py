@@ -1,4 +1,5 @@
 import os
+import sys
 import os.path
 import json
 from aqt import mw
@@ -20,7 +21,11 @@ for fileName in os.listdir(originalFolder):
         metaFile = os.path.join(originalAddonDir,"meta.json")
         if os.path.exists(metaFile):
             with open(metaFile,"r") as f:
-                j = json.load(f)
+                try:
+                    j = json.load(f)
+                except json.decoder.JSONDecodeError as E:
+                    print(f"""File {fileName}:
+{E}""", file=sys.stderr)
                 if "name" not in j:
                     continue
                 name = j["name"]
