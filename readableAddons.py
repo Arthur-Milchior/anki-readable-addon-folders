@@ -3,7 +3,7 @@ import os.path
 import json
 from aqt import mw
 from .config import getNewFolder
-
+import sys
 
 def debug(*args,**kwargs):
     #print(*args,**kwargs)
