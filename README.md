@@ -7,6 +7,10 @@ go read or edit the code of an add-on.
 Thus, this add-on create another folder, containing symlinks with the
 name of the add-on to the add-on folder.
 
+## Warning
+This does not work on windows. Because this add-ons create symbolic
+links, and windows can't create them without admin privilege.
+
 ## Usage
 Install this add-on and start anki. That's all. The symlinks are
 created while anki start. If you install a new add-on, it's symlink
