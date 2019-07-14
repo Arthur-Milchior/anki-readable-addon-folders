@@ -8,7 +8,6 @@ def getNewFolder():
     if newContainingFolder is None:
         mw.pm.addonFolder()# ensure that base is set.
         newContainingFolder = mw.pm.base
-        print(f"Containing folder is {newContainingFolder}")
     if newFolderName is None:
         newFolderName = "namedAddons"
     return os.path.join(newContainingFolder,newFolderName)
