@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Add-on folder with readable names",
+
+  "type": "object",
+  "properties": {
+    "newFolderName": {
+      "title": "Folder name",
+      "type": "string",
+      "description": "The folder containing the add-ons' folder."
+    },
+    "containingFolder": {
+      "title": "Add-ons folder's folder",
+      "type": "string",
+      "description": "The name of the add-ons folder.",
+      "ui:widget":"dirpath"
+    }
+  }
+}
