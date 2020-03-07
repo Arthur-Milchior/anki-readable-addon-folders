@@ -1,5 +1,6 @@
-from anki.utils import isWin
 import sys
+
+from anki.utils import isWin
 
 if not isWin:
     from . import readableAddons
