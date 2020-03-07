@@ -7,12 +7,6 @@ from aqt import mw
 
 from .config import getNewFolder
 
-
-def debug(*args, **kwargs):
-    # print(*args,**kwargs)
-    pass
-
-
 originalFolder = mw.pm.addonFolder()
 newFolder = getNewFolder()
 if not os.path.exists(newFolder):
@@ -20,7 +14,7 @@ if not os.path.exists(newFolder):
         os.makedirs(newFolder)
     except PermissionError:
         print(
-            f"""There is an error with the configuration of the addon "Add-on folder with readable names". Currently, it asks to use directory {originalFolder}, and you don't have the permissions to create a folder there. So, either you should change the permission of this folder, or you should select another folder.""", sys.stderr)
+            (f"""There is an error with the configuration of the addon "Add-on folder with readable names". Currently, it asks to use directory {originalFolder}, and you don't have the permissions to create a folder there. So, either you should change the permission of this folder, or you should select another folder.""", sys.stderr))
 
 for fileName in os.listdir(originalFolder):
     originalAddonDir = os.path.join(originalFolder, fileName)
@@ -35,6 +29,5 @@ for fileName in os.listdir(originalFolder):
         else:
             name = fileName
         newAddonDir = os.path.join(newFolder, name)
-        debug(f"symlink({originalAddonDir}, {newAddonDir})")
         if not os.path.exists(newAddonDir):
             os.symlink(originalAddonDir, newAddonDir)
