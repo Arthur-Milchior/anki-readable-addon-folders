@@ -4,6 +4,7 @@ import os.path
 import sys
 
 from aqt import mw
+from anki.utils import isWin
 
 from .config import getNewFolder
 
@@ -30,4 +31,7 @@ for fileName in os.listdir(originalFolder):
             name = fileName
         newAddonDir = os.path.join(newFolder, name)
         if not os.path.exists(newAddonDir):
-            os.symlink(originalAddonDir, newAddonDir)
+            if isWin:
+                os.system(r'mklink /J "{}" "{}"'.format(newAddonDir, originalAddonDir))
+            else:
+                os.symlink(originalAddonDir, newAddonDir)
