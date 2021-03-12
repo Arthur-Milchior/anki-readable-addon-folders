@@ -17,6 +17,7 @@ if not os.path.exists(newFolder):
         print(
             (f"""There is an error with the configuration of the addon "Add-on folder with readable names". Currently, it asks to use directory {originalFolder}, and you don't have the permissions to create a folder there. So, either you should change the permission of this folder, or you should select another folder.""", sys.stderr))
 
+installedAddonNames = set()
 for fileName in os.listdir(originalFolder):
     originalAddonDir = os.path.join(originalFolder, fileName)
     if os.path.isdir(originalAddonDir):
@@ -29,9 +30,15 @@ for fileName in os.listdir(originalFolder):
                 name = j["name"]
         else:
             name = fileName
+        installedAddonNames.add(name)
         newAddonDir = os.path.join(newFolder, name)
         if not os.path.exists(newAddonDir):
             if isWin:
                 os.system(r'mklink /J "{}" "{}"'.format(newAddonDir, originalAddonDir))
             else:
                 os.symlink(originalAddonDir, newAddonDir)
+
+invalidSymlinks = set(os.listdir(newFolder)) - installedAddonNames
+for invalidSymlinkName in invalidSymlinks:
+    invalidSymlinkPath = os.path.join(newFolder, invalidSymlinkName)
+    os.remove(invalidSymlinkPath)
