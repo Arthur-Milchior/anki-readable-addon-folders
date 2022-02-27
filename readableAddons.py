@@ -13,8 +13,15 @@ if not os.path.exists(newFolder):
     try:
         os.makedirs(newFolder)
     except PermissionError:
-        print(
-            (f"""There is an error with the configuration of the addon "Add-on folder with readable names". Currently, it asks to use directory {originalFolder}, and you don't have the permissions to create a folder there. So, either you should change the permission of this folder, or you should select another folder.""", sys.stderr))
+        msg = (
+            "There is an error with the configuration of the addon"
+            '"Add-on folder with readable names". Currently, it asks '
+            f"to use directory {originalFolder}, and you don't have the "
+            "permissions to create a folder there. So, either you should "
+            "change the permission of this folder, or you should select "
+            "another folder."
+        )
+        print(msg, sys.stderr)
 
 for entry in os.listdir(originalFolder):
     originalAddonDir = os.path.join(originalFolder, entry)
