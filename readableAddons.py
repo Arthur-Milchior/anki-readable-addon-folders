@@ -26,6 +26,7 @@ for fileName in os.listdir(originalFolder):
                 if "name" not in j:
                     continue
                 name = j["name"]
+                name = name.replace("/", "_")
         else:
             name = fileName
         newAddonDir = os.path.join(newFolder, name)
