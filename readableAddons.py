@@ -16,8 +16,8 @@ if not os.path.exists(newFolder):
         print(
             (f"""There is an error with the configuration of the addon "Add-on folder with readable names". Currently, it asks to use directory {originalFolder}, and you don't have the permissions to create a folder there. So, either you should change the permission of this folder, or you should select another folder.""", sys.stderr))
 
-for fileName in os.listdir(originalFolder):
-    originalAddonDir = os.path.join(originalFolder, fileName)
+for entry in os.listdir(originalFolder):
+    originalAddonDir = os.path.join(originalFolder, entry)
     if os.path.isdir(originalAddonDir):
         metaFile = os.path.join(originalAddonDir, "meta.json")
         if os.path.exists(metaFile):
@@ -28,7 +28,7 @@ for fileName in os.listdir(originalFolder):
                 name = j["name"]
                 name = name.replace("/", "_")
         else:
-            name = fileName
+            name = entry
         newAddonDir = os.path.join(newFolder, name)
         if not os.path.exists(newAddonDir):
             os.symlink(originalAddonDir, newAddonDir)
